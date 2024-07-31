@@ -38,5 +38,9 @@ def hacer_sonido():
     #Return JSON de respuesta
     return json_data
 
+@app.route("/")
+def welcome():
+    return 'welcome'
+
 if __name__ == '__main__':
     app.run(debug=True)
