@@ -12,9 +12,22 @@ api = Api(app)
 #Pantalla de inicio
 @app.route("/animales/hacer-sonido")
 def hacer_sonido():
+    cedula = request.args.get('cedula')
     animal = request.args.get('animal')
 
     sonido = ""
+
+    #Dependiendo del ultimo digito de la cedula se hace el sonido
+    #Tiene prioridad el parametro numero de cedula sobre el parametro animal
+    if cedula != None:
+        digito_cedula = int(cedula[-1])
+        if digito_cedula >= 0 and digito_cedula <= 3:
+            animal = "gato"
+        elif digito_cedula >= 4 and digito_cedula <= 6:
+            animal = "huron"
+        else:
+            animal = "boa-constrictor"
+    
     #De acuerdo al tipo de animal obtiene el sonido
     match animal:
         case "gato":
